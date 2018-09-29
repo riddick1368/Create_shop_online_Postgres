@@ -4,4 +4,8 @@ from django.urls import path,include
 
 
 
-app_name="userprofile"
+app_name ="userprofile"
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    ]
