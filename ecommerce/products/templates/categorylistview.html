@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+<div class="container">
+    <div class="row">
+
+            {% for cat in CategoryList %}
+        <div class="col-md-4">
+            <div class="card border-success mb-3" style="max-width: 18rem;">
+  <div class="card-header bg-transparent border-success"><h4>Category_title :</h4><a href="{% url 'products:category_detail' id=cat.id %}">{{ cat.title }}</a></div>
+  <div class="card-body text-success">
+    <h5 class="card-title">Success card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+                <div class="card-footer bg-transparent border-success"><h6>Category_id :</h6><small>{{ cat.id }}</small></div>
+</div>
+        </div>
+             {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

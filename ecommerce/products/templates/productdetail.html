@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <ul>
+                <li>title :{{ product.title }}</li>
+                <li>id :{{ product.id }}</li>
+                <li>brand :{{ product.brand.title }}</li>
+                {% for cate in product.category.all %}
+                <li>category :{{ cate.title}}</li>
+                {% endfor %}
+            </ul>
+            {% if product.productimage_set.count > 0 %}
+            {% for img in product.productimage_set.all %}
+            <img src="{{ img.image.url}}" alt="Wire" style="width:300px;hight:300px;">
+
+            {% endfor %}
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

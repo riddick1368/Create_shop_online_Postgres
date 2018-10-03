@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <hr>
+                <h3>Categories</h3>
+            {{ ProductList }}
+            {% if ProductList.category_set.count >= 1 %}
+                {% for cat in ProductList.category_set.all %}
+                {{ cat.title }}
+                {{ cat.id }}
+                {% endfor %}
+            {% endif %}
+            {% for product in ProductList %}
+            <div class="col-md-3">
+            <h2>Title : {{ product.title}}</h2>
+            <h2>Brand : {{ product.brand.title}}</h2>
+            <h2>Category : {{ product.category.title}}</h2>
+            <h2>Price : {{ product.price}}</h2>
+                {% for cate in product.category.all %}
+               <h3>Category : {{ cate.title }} </h3>
+                {% endfor %}
+            <hr>
+            </div>
+            <a href="{% url 'products:product_detail_view' id=product.id %}" class="btn btn-primary">View More</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

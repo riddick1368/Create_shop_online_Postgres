@@ -3,13 +3,18 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col">
             {% for item in postlist %}
+        <div class="col-md-3">
             <ul>
                 <li><h3>Title:</h3> {{ item.title }} <smal>{{ item.timestamp }}</smal></li>
                 <li><h3>description:</h3>{{ item.description }}</li>
                 <li><h3>Updated:</h3>{{ item.updated }}</li>
+                <li><h>Author: {{ item.Author }}</h></li>
+                {{ item.id }}
             </ul>
+            <a href="{% url 'blog:postdetail' id=item.id %}" class="btn btn-primary" >View More </a>
+        <hr>
+                    </div>
             {% endfor %}
         </div>
     </div>

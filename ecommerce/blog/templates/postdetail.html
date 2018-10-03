@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h1>{{ post.title }}</h1><small> <li>{{ post.timestamp }}</li></small>
+            <ul>
+                <li>{{ post.description }}</li>
+                <h6>{{ post.Author }}</li></h6><li>
+            </ul>
+            {% if request.user == post.Author %}
+            <a href="{% url 'blog:update-post' id=post.id %}" class="btn btn-primary">Edit Post</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -12,3 +12,15 @@ class CreatePostForm(forms.ModelForm):
             "description",
             "slug",
         ]
+
+
+
+class PostEditForm(forms.ModelForm):
+
+    class Meta :
+        model = Post
+
+        fields = ["title",
+                  "description",
+                  'slug'
+         ]
