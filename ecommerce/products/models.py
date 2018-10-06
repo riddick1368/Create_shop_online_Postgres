@@ -41,13 +41,26 @@ class Varations(models.Model):
         else :
             return self.price
 
+# class ProductQueryset(models.QuerySet):
+#
+#     def get_related_product(self, instance):
+#         return self.filter(category__in = instance)
+#
+#
+# class ProductManger(models.manager):
+#
+#     def get_queryset(self):
+#         return ProductQueryset(self.model,using=self._db)
+
+
 class Product(models.Model):
-    title = models.CharField(max_length=120)
+    title = models.CharField(max_length=120,help_text="Enter uniqe title")
+    hits = models.IntegerField(default=0)
     brand = models.ForeignKey(Brand,on_delete=models.CASCADE)
-    description = models.TextField(max_length=1500)
+    description = models.TextField(max_length=1500,help_text='descrip your Product')
     category = models.ManyToManyField(Category)
     active = models.BooleanField(default=True)
-    price = models.DecimalField(decimal_places=2,max_digits=15)
+    price = models.DecimalField(decimal_places=2,max_digits=15,help_text="قیمت ها به تومان می باشد.")
 
 
     def __str__(self):
@@ -72,6 +85,7 @@ class ProductImage(models.Model):
 
 class ProductFeautre(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    hits = models.IntegerField(default=0)
     image = models.ImageField()
     title = models.CharField(max_length=120)
     text = models.TextField(max_length=15000)

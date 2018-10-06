@@ -1,11 +1,13 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm,RegisterForm
+from .forms import LoginForm,RegisterForm,ContactForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 
@@ -75,7 +77,41 @@ def register_user(request):
 #
 # def password_reset_complete(request,
 #                             template_name='registration/password_reset_complete.html',
-#                             extra_context=None):
+# def ViewProfile(request,username):
+#     if username:
+#         user = User.objects.get(username=username)
+#     else:
+#         user = request.user
+#
+#     context ={
+#         'user':user
+#     }
+#     template_name = "viewprofile.html"
+#     return render(request,template_name,context)
+
+
+def ContactUs(request):
+    title = 'Contac Us'
+    if request.method =="POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            from_email = settings.EMAIL_HOST_USER
+            to_email = [email,"some other thing "]
+            send_mail(subject,message,from_email,to_email,fail_silently=True)
+            messages.success(request,"message sent")
+            return redirect('home')
+    else :
+        form = ContactForm()
+    context = {'title': title, 'form': form}
+    return render(request,'contact_us.html',context)
+
+
+
+
+
 
 # doesn't work correct!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @login_required()
@@ -92,3 +128,6 @@ def Change_Password(request):
     else :
         form = PasswordChangeForm(user=request.user)
     return render(request,"change_password.html",context={'form':form})
+
+
+

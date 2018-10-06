@@ -11,6 +11,10 @@ class ProductCustomize(admin.ModelAdmin):
     list_filter = ['title','brand','category']
     list_display_links = ['title']
     list_editable = ['brand']
+    raw_id_fields = ['category']
+    search_fields = ['title','category']
+    readonly_fields = ['hits']
+
 
 
     class Meta:
@@ -24,6 +28,7 @@ class CategoryCustomize(admin.ModelAdmin):
     list_per_page = 15
     list_filter = ['title']
     list_display_links = ['title']
+    search_fields = ['category']
     class Meta:
         order_by = ['-title']
 

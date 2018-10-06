@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class="container">
     <div class="row">
         <div class="col">
-
+            <hr  />
             <form method="POST" action="">
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="form-group">
                     {{ field.error }}
                     {{ field.label_tag }}
-                    {{ field }}
+                    {{ field}}
                 </div>
                 {% endfor %}
                 <input type="submit" class="btn btn-primary" value="submit">

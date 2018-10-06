@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'polls',
     'products',
     'userprofile',
+
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -135,3 +137,23 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static_cdn')
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'media_cdn')
+
+# email field
+
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_HOST_USER = 'django.1989.1989.1989@gmail.com'
+EMAIL_HOST_PASSWORD = 'arsenal1368'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+DEFAULT_EMAIL_FROM = EMAIL_HOST_USER
+
+
+ADMIN = [(
+    'name','django.1989.1989.1989@gmail.com'
+)]
+
+MANAGER = [
+    (
+        'name','django.1989.1989.1989@gmail.com'
+    )
+]

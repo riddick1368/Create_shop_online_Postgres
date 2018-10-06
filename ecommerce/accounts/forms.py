@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-
+from .models import ContactUs
 
 
 class LoginForm(forms.Form):
@@ -55,3 +55,12 @@ class RegisterForm(forms.Form):
                 raise ValidationError("password dosen't match ")
 
 
+
+
+class ContactForm(forms.ModelForm):
+    message = forms.TextInput()
+
+
+    class Meta :
+        model = ContactUs
+        fields = ['name','email','subject']
